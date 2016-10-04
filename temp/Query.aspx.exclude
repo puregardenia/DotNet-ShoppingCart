@@ -1,0 +1,99 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Query.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>无标题页</title>
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+        .style2
+        {
+            width: 93px;
+        }
+        .style3
+        {
+            width: 119px;
+        }
+        .style4
+        {
+            width: 292px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    
+        <table class="style1">
+            <tr>
+                <td class="style2">
+                    编号</td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_id" runat="server"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    <asp:Button ID="bt_query" runat="server" onclick="bt_query_Click" Text="查询" 
+                        Width="39px" CausesValidation="False" />
+                </td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    姓名</td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_name" runat="server" ontextchanged="TextBox1_TextChanged" 
+                        style="margin-left: 0px" Width="149px"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    <asp:Button ID="bt_delete" runat="server" Text="删除" CausesValidation="False" 
+                        onclick="bt_delete_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    职称</td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_job" runat="server"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    办公室</td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_loc" runat="server"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    学院 
+                </td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_college" runat="server"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    电子邮箱</td>
+                <td class="style3">
+                    <asp:TextBox ID="txt_email" runat="server"></asp:TextBox>
+                </td>
+                <td class="style4">
+                    <asp:Button ID="bt_redire" runat="server" onclick="bt_redire_Click" Text="注册" 
+                        CausesValidation="False" />
+                </td>
+            </tr>
+        </table>
+    
+    </div>
+    </form>
+</body>
+</html>

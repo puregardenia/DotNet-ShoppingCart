@@ -1,0 +1,93 @@
+﻿using System;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.SqlClient;
+
+public partial class _Default : System.Web.UI.Page 
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void bt_query_Click(object sender, EventArgs e)
+    {
+        SqlConnection myconn=new SqlConnection();
+        myconn.ConnectionString = ConfigurationManager.ConnectionStrings["myconnect"].ToString();
+        myconn.Open();
+
+        string querysql="select * from teacher where tid='"+txt_id.Text+"'";
+
+        SqlCommand mycmd = new SqlCommand(querysql,myconn);
+        SqlDataReader myreader = mycmd.ExecuteReader();
+        myreader.Read();
+        try
+        {
+            txt_name.Text = myreader["name"].ToString();
+            txt_job.Text = myreader["job"].ToString();
+            txt_loc.Text = myreader["location"].ToString();
+            txt_college.Text = myreader["college"].ToString();
+            txt_email.Text = myreader["email"].ToString();
+        }
+        catch(Exception) {
+            Response.Write("<script>alert('查询编号不存在')</script>");
+            txt_id.Text = "";
+            txt_name.Text = "";
+            txt_job.Text = "";
+            txt_loc.Text = "";
+            txt_college.Text = "";
+            txt_email.Text = "";
+        }
+        myreader.Close();
+        myconn.Close();
+    }
+    protected void bt_redire_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("insert.aspx");
+    }
+    protected void bt_delete_Click(object sender, EventArgs e)
+    {
+        SqlConnection myconn = new SqlConnection();
+        myconn.ConnectionString = ConfigurationManager.ConnectionStrings["myconnect"].ToString();
+
+        myconn.Open();
+
+        string querysql = "delete from teacher where tid='" + txt_id.Text + "'";
+
+        try
+        {
+            SqlCommand mycmd = new SqlCommand(querysql, myconn);
+            if (mycmd.ExecuteNonQuery() > 0)
+            {
+                Response.Write("<script>alert('删除数据成功')</script>");
+                txt_id.Text = "";
+                txt_name.Text = "";
+                txt_job.Text = "";
+                txt_loc.Text = "";
+                txt_college.Text = "";
+                txt_email.Text = "";
+            }
+            else
+            {
+                Response.Write("<script>alert('删除数据失败')</script>");
+            }
+        }
+        catch (Exception)
+        {
+            Response.Write("<script>alert('删除数据异常')</script>");
+        }
+
+        myconn.Close();
+    }
+}
